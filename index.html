@@ -3,660 +3,242 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<title>HOMNIX</title>
-
+<title>HOMNIX Pro</title>
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
-
-body{
-background:#f5f3ff;
-color:#111;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
+body{background:#f5f3ff;color:#111;}
 /* SPLASH */
-
-#splash{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-background:linear-gradient(180deg,#6d28d9,#ffffff);
-color:white;
-}
-
-#splash h1{
-font-size:60px;
-letter-spacing:3px;
-}
-
-#splash p{
-margin-top:10px;
-font-size:18px;
-}
-
+#splash{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(180deg,#6d28d9,#ffffff);color:white;}
+#splash h1{font-size:60px;letter-spacing:3px;}
+#splash p{margin-top:10px;font-size:18px;}
 /* LOGIN */
-
-#login{
-display:none;
-height:100vh;
-justify-content:center;
-align-items:center;
-background:white;
-padding:20px;
-}
-
-.login-box{
-width:100%;
-max-width:400px;
-background:#fff;
-padding:30px;
-border-radius:30px;
-box-shadow:0 4px 20px rgba(0,0,0,0.08);
-text-align:center;
-}
-
-.login-box h2{
-color:#6d28d9;
-margin-bottom:20px;
-}
-
-input,textarea,select{
-width:100%;
-padding:16px;
-margin-top:15px;
-border-radius:16px;
-border:1px solid #ddd;
-font-size:16px;
-}
-
-button{
-width:100%;
-padding:16px;
-margin-top:15px;
-border:none;
-border-radius:16px;
-background:#6d28d9;
-color:white;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-}
-
+#login{display:none;height:100vh;justify-content:center;align-items:center;background:white;padding:20px;}
+.login-box{width:100%;max-width:400px;background:#fff;padding:30px;border-radius:30px;box-shadow:0 4px 20px rgba(0,0,0,0.08);text-align:center;}
+.login-box h2{color:#6d28d9;margin-bottom:20px;}
+input,textarea,select{width:100%;padding:16px;margin-top:15px;border-radius:16px;border:1px solid #ddd;font-size:16px;}
+button{width:100%;padding:16px;margin-top:15px;border:none;border-radius:16px;background:#6d28d9;color:white;font-size:16px;font-weight:bold;cursor:pointer;}
 /* HOME */
-
-#home{
-display:none;
-}
-
+#home{display:none;}
 /* TOPBAR */
-
-.topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px;
-background:white;
-position:sticky;
-top:0;
-z-index:100;
-}
-
-.logo{
-font-size:28px;
-font-weight:bold;
-color:#6d28d9;
-}
-
-.profile{
-width:45px;
-height:45px;
-background:#ede9fe;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:22px;
-cursor:pointer;
-}
-
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:20px;background:white;position:sticky;top:0; z-index:100;}
+.topbar .logo{font-size:28px;font-weight:bold;color:#6d28d9;}
+.topbar .hamburger{font-size:28px;cursor:pointer;}
+/* PROFILE PANEL */
+#profilePanel{position:fixed;top:0;right:-320px;width:320px;height:100%;background:white;box-shadow:-5px 0 20px rgba(0,0,0,0.1);padding:20px;transition:0.4s;z-index:999;}
+#profilePanel.active{right:0;}
+#profilePanel h2{color:#6d28d9;margin-bottom:10px;}
+.menu-item{margin:12px 0;padding:12px;background:#f5f3ff;border-radius:12px;cursor:pointer;transition:0.2s;}
+.menu-item:hover{background:#e0d7ff;}
 /* HERO */
-
-.hero{
-background:linear-gradient(135deg,#6d28d9,#9333ea);
-padding:30px 20px;
-color:white;
-border-radius:0 0 30px 30px;
-}
-
-.hero h1{
-font-size:34px;
-}
-
-.hero p{
-margin-top:10px;
-}
-
+.hero{background:linear-gradient(135deg,#6d28d9,#9333ea);padding:30px 20px;color:white;border-radius:0 0 30px 30px;}
+.hero h1{font-size:34px;}
+.hero p{margin-top:10px;}
 /* SERVICES */
-
-.services{
-padding:20px;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:16px;
-}
-
-.card{
-background:white;
-padding:25px;
-border-radius:24px;
-text-align:center;
-font-weight:bold;
-box-shadow:0 4px 18px rgba(0,0,0,0.06);
-cursor:pointer;
-transition:0.3s;
-}
-
-.card:hover{
-transform:scale(1.03);
-}
-
+.services{padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.card{background:white;padding:25px;border-radius:24px;text-align:center;font-weight:bold;box-shadow:0 4px 18px rgba(0,0,0,0.06);cursor:pointer;transition:0.3s;}
+.card:hover{transform:scale(1.03);}
+.card h4{margin-top:12px;color:#6d28d9;}
 /* BOOKING */
-
-.booking-box{
-background:white;
-margin:20px;
-padding:20px;
-border-radius:24px;
-box-shadow:0 4px 18px rgba(0,0,0,0.06);
-}
-
-.booking-box h2{
-color:#6d28d9;
-margin-bottom:10px;
-}
-
-.status{
-margin-top:20px;
-background:#ede9fe;
-padding:16px;
-border-radius:16px;
-display:none;
-color:#5b21b6;
-font-weight:bold;
-}
-
+.booking-box{background:white;margin:20px;padding:20px;border-radius:24px;box-shadow:0 4px 18px rgba(0,0,0,0.06);}
+.booking-box h2{color:#6d28d9;margin-bottom:10px;}
+.status{margin-top:20px;padding:16px;border-radius:16px;font-weight:bold;display:none;}
+.status.pending{background:#fef3c7;color:#92400e;}
+.status.completed{background:#dcfce7;color:#166534;}
+.status.cancelled{background:#fee2e2;color:#991b1b;}
 /* HISTORY */
-
-.history{
-margin:20px;
-background:white;
-padding:20px;
-border-radius:24px;
-box-shadow:0 4px 18px rgba(0,0,0,0.06);
-}
-
-.history-item{
-background:#f5f3ff;
-padding:15px;
-border-radius:16px;
-margin-top:12px;
-}
-
-/* PROFILE MENU */
-
-#profileMenu{
-position:fixed;
-top:0;
-right:-100%;
-width:300px;
-height:100%;
-background:white;
-padding:25px;
-transition:0.4s;
-z-index:999;
-box-shadow:-5px 0 20px rgba(0,0,0,0.1);
-}
-
-#profileMenu.active{
-right:0;
-}
-
-#profileMenu h2{
-color:#6d28d9;
-margin-bottom:20px;
-}
-
-.menu-item{
-padding:16px;
-background:#f5f3ff;
-border-radius:16px;
-margin-top:12px;
-}
-
+.history{margin:20px;background:white;padding:20px;border-radius:24px;box-shadow:0 4px 18px rgba(0,0,0,0.06);}
+.history-item{padding:15px;border-radius:16px;margin-top:12px;}
+.history-item.completed{background:#dcfce7;}
+.history-item.cancelled{background:#fee2e2;}
+.history-item.pending{background:#fef3c7;}
 /* MOBILE */
-
-@media(max-width:700px){
-
-.services{
-grid-template-columns:1fr 1fr;
-}
-
-.hero h1{
-font-size:28px;
-}
-
-}
-
+@media(max-width:700px){.services{grid-template-columns:1fr 1fr;}.hero h1{font-size:28px;}}
 </style>
 </head>
 
 <body>
-
 <!-- SPLASH -->
-
 <div id="splash">
-
 <h1>HOMNIX</h1>
-
 <p>© 2026 All Rights Reserved</p>
-
 </div>
 
 <!-- LOGIN -->
-
 <div id="login">
-
 <div class="login-box">
-
 <h2>Welcome To Homnix</h2>
-
-<input type="text" id="mobile" placeholder="Enter Mobile Number">
-
+<input type="text" id="mobile" placeholder="Enter 10-digit Mobile Number">
 <div id="recaptcha-container"></div>
-
-<button onclick="sendOTP()">
-Send OTP
-</button>
-
-<input type="text" id="otp" placeholder="Enter OTP">
-
-<button onclick="verifyOTP()">
-Verify OTP
-</button>
-
+<button onclick="sendOTP()">Send OTP</button>
+<input type="text" id="otp" placeholder="Enter OTP" style="display:none;">
+<button onclick="verifyOTP()" style="display:none;">Verify OTP</button>
+<input type="text" id="name" placeholder="Enter Your Name" style="display:none;">
+<button onclick="saveName()" style="display:none;">Save Name</button>
 </div>
-
 </div>
 
 <!-- HOME -->
-
 <div id="home">
-
 <div class="topbar">
-
-<div class="logo">
-HOMNIX
-</div>
-
-<div class="profile" onclick="openProfile()">
-👤
-</div>
-
+<div class="logo">HOMNIX</div>
+<div class="hamburger" onclick="toggleProfile()">☰</div>
 </div>
 
 <div class="hero">
-
 <h1>Home Services In Minutes</h1>
-
-<p>
-Cleaning • Plumbing • Electrician • Painting
-</p>
-
+<p>Cleaning • Plumbing • Electrician • Painting</p>
 </div>
-
-<!-- SERVICES -->
 
 <div class="services">
-
-<div class="card">
-🧹 Cleaning
+<div class="card"><h4>🧹 Cleaning</h4></div>
+<div class="card"><h4>🚿 Plumbing</h4></div>
+<div class="card"><h4>💡 Electrician</h4></div>
+<div class="card"><h4>🎨 Painting</h4></div>
 </div>
-
-<div class="card">
-🚿 Plumbing
-</div>
-
-<div class="card">
-💡 Electrician
-</div>
-
-<div class="card">
-🎨 Painting
-</div>
-
-</div>
-
-<!-- BOOKING -->
 
 <div class="booking-box">
-
 <h2>Book Service</h2>
-
 <select id="service">
-
 <option>Cleaning</option>
 <option>Plumbing</option>
 <option>Electrician</option>
 <option>Painting</option>
-
 </select>
-
-<button onclick="getLocation()">
-Use Current Location
-</button>
-
+<button onclick="getLocation()">Use Current Location</button>
 <input type="text" id="location" placeholder="Enter Address">
-
 <textarea id="issue" rows="5" placeholder="Describe Your Issue"></textarea>
-
-<button onclick="bookService()">
-Confirm Booking
-</button>
-
-<div class="status" id="bookingStatus">
-✅ Booking Confirmed <br><br>
-Professional Will Contact You Soon
+<button onclick="bookService()">Confirm Booking</button>
+<div class="status" id="bookingStatus">✅ Booking Confirmed</div>
 </div>
-
-</div>
-
-<!-- HISTORY -->
 
 <div class="history">
-
 <h2>Booking History</h2>
-
 <div id="historyList"></div>
-
+</div>
 </div>
 
-</div>
-
-<!-- PROFILE -->
-
-<div id="profileMenu">
-
+<!-- PROFILE PANEL -->
+<div id="profilePanel">
 <h2>Customer Profile</h2>
-
-<div class="menu-item" id="profileName">
-Name
-</div>
-
-<div class="menu-item" id="profileMobile">
-Mobile
-</div>
-
-<div class="menu-item">
-Booking History
-</div>
-
-<div class="menu-item">
-Help & Support
-</div>
-
-<div class="menu-item" onclick="logout()">
-Logout
-</div>
-
+<div class="menu-item" id="profileName">Name: -</div>
+<div class="menu-item" id="profileMobile">Mobile: -</div>
+<div class="menu-item" id="bookingHistory">Booking History</div>
+<div class="menu-item" onclick="cancelBooking()">Cancel Booking</div>
+<div class="menu-item" onclick="logout()">Logout</div>
 </div>
 
 <!-- FIREBASE -->
-
 <script type="module">
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-
-import {
-getAuth,
-RecaptchaVerifier,
-signInWithPhoneNumber
-}
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-
-import {
-getFirestore,
-collection,
-addDoc,
-getDocs
-}
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import { getFirestore, collection, addDoc, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 /* FIREBASE CONFIG */
-
 const firebaseConfig = {
-
 apiKey: "PASTE_API_KEY",
-
 authDomain: "PASTE_AUTH_DOMAIN",
-
 projectId: "PASTE_PROJECT_ID",
-
 storageBucket: "PASTE_STORAGE_BUCKET",
-
 messagingSenderId: "PASTE_SENDER_ID",
-
 appId: "PASTE_APP_ID"
-
 };
-
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
-
 const db = getFirestore(app);
 
 /* SPLASH */
-
 setTimeout(() => {
-
-document.getElementById("splash").style.display = "none";
-
-document.getElementById("login").style.display = "flex";
-
-}, 2500);
+document.getElementById("splash").style.display="none";
+document.getElementById("login").style.display="flex";
+},2500);
 
 /* RECAPTCHA */
-
-window.recaptchaVerifier = new RecaptchaVerifier(
-auth,
-"recaptcha-container",
-{
-size: "normal"
-}
-);
+window.recaptchaVerifier = new RecaptchaVerifier(auth,"recaptcha-container",{size: "normal"});
 
 /* SEND OTP */
-
 window.sendOTP = async function(){
-
-const phone =
-"+91" + document.getElementById("mobile").value;
-
-const appVerifier =
-window.recaptchaVerifier;
-
+const mobileInput = document.getElementById("mobile").value.trim();
+const regex = /^[0-9]{10}$/;
+if(!regex.test(mobileInput)){alert("Enter valid 10-digit number"); return;}
+const phone = "+91"+mobileInput;
+const appVerifier = window.recaptchaVerifier;
 try{
-
-const confirmationResult =
-await signInWithPhoneNumber(
-auth,
-phone,
-appVerifier
-);
-
-window.confirmationResult =
-confirmationResult;
-
-alert("OTP Sent");
-
-}catch(error){
-
-alert(error.message);
-
-}
-
+const confirmationResult = await signInWithPhoneNumber(auth,phone,appVerifier);
+window.confirmationResult = confirmationResult;
+alert("OTP Sent to "+phone);
+document.getElementById("otp").style.display="block";
+document.querySelector("#login button[onclick='verifyOTP()']").style.display="block";
+}catch(error){alert("Error sending OTP: "+error.message);}
 };
 
 /* VERIFY OTP */
-
 window.verifyOTP = async function(){
-
-const otp =
-document.getElementById("otp").value;
-
+const otp = document.getElementById("otp").value.trim();
+if(otp===""){alert("Enter OTP"); return;}
 try{
-
 await window.confirmationResult.confirm(otp);
+document.getElementById("otp").style.display="none";
+document.querySelector("#login button[onclick='verifyOTP()']").style.display="none";
+document.getElementById("name").style.display="block";
+document.querySelector("#login button[onclick='saveName()']").style.display="block";
+}catch(error){alert("Invalid OTP");}
+};
 
-document.getElementById("login").style.display = "none";
-
-document.getElementById("home").style.display = "block";
-
-document.getElementById("profileMobile").innerHTML =
-document.getElementById("mobile").value;
-
+/* SAVE CUSTOMER NAME */
+window.saveName = async function(){
+const name = document.getElementById("name").value.trim();
+if(name===""){alert("Enter your name"); return;}
+const mobile = document.getElementById("mobile").value.trim();
+await addDoc(collection(db,"users"), {name,mobile});
+document.getElementById("login").style.display="none";
+document.getElementById("home").style.display="block";
+document.getElementById("profileName").innerText="Name: "+name;
+document.getElementById("profileMobile").innerText="Mobile: "+mobile;
 loadBookings();
-
-}catch(error){
-
-alert("Invalid OTP");
-
-}
-
 };
 
 /* LOCATION */
-
 window.getLocation = function(){
-
 if(navigator.geolocation){
-
 navigator.geolocation.getCurrentPosition(
-
-(position)=>{
-
-document.getElementById("location").value =
-position.coords.latitude +
-"," +
-position.coords.longitude;
-
-},
-
-()=>{
-
-alert("Location Permission Denied");
-
-}
-
+(position)=>{document.getElementById("location").value=position.coords.latitude+","+position.coords.longitude;},
+()=>{alert("Location Permission Denied");}
 );
-
 }
-
 };
 
 /* BOOK SERVICE */
-
 window.bookService = async function(){
-
-const service =
-document.getElementById("service").value;
-
-const location =
-document.getElementById("location").value;
-
-const issue =
-document.getElementById("issue").value;
-
-await addDoc(
-collection(db,"bookings"),
-{
-service,
-location,
-issue,
-status:"Professional Assigned",
-time:new Date()
-}
-);
-
-document.getElementById("bookingStatus").style.display =
-"block";
-
+const service=document.getElementById("service").value;
+const location=document.getElementById("location").value.trim();
+const issue=document.getElementById("issue").value.trim();
+if(!service || !location || !issue){alert("Fill all fields"); return;}
+await addDoc(collection(db,"bookings"),{service,location,issue,status:"Pending",time:new Date()});
+const statusDiv=document.getElementById("bookingStatus");
+statusDiv.innerText="✅ Booking Confirmed";
+statusDiv.className="status pending";
+statusDiv.style.display="block";
 loadBookings();
-
 };
 
 /* LOAD BOOKINGS */
-
 async function loadBookings(){
-
-const history =
-document.getElementById("historyList");
-
-history.innerHTML = "";
-
-const querySnapshot =
-await getDocs(collection(db,"bookings"));
-
-querySnapshot.forEach((doc)=>{
-
-const data = doc.data();
-
-history.innerHTML += `
-
-<div class="history-item">
-
-<b>${data.service}</b><br><br>
-
-${data.location}<br><br>
-
-${data.status}
-
-</div>
-
-`;
-
+const history=document.getElementById("historyList");
+history.innerHTML="";
+const querySnapshot=await getDocs(collection(db,"bookings"));
+querySnapshot.forEach((docSnap)=>{
+const data=docSnap.data();
+let statusClass="pending";
+if(data.status==="Completed")statusClass="completed";
+if(data.status==="Cancelled")statusClass="cancelled";
+history.innerHTML+=`<div class="history-item ${statusClass}"><b>${data.service}</b><br>${data.location}<br>Status: ${data.status}<br>Time: ${new Date(data.time?.seconds*1000||Date.now()).toLocaleString()}</div>`;
 });
-
 }
 
-/* PROFILE */
-
-window.openProfile = function(){
-
-document
-.getElementById("profileMenu")
-.classList
-.toggle("active");
-
-};
-
-/* LOGOUT */
-
-window.logout = function(){
-
-location.reload();
-
-};
-
+/* PROFILE PANEL */
+window.toggleProfile=function(){document.getElementById("profilePanel").classList.toggle("active");}
+window.logout=function(){location.reload();}
+window.cancelBooking=function(){alert("Select booking from history to cancel"); /* later implement Firebase cancel */ }
 </script>
-
 </body>
 </html>
