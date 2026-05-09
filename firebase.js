@@ -1,12 +1,14 @@
 import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
- getAuth,
- RecaptchaVerifier,
- signInWithPhoneNumber
+  getAuth,
+  RecaptchaVerifier,
+  signInWithPhoneNumber
 }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
 
@@ -15,7 +17,8 @@ const firebaseConfig = {
   authDomain:
   "YOUR_PROJECT.firebaseapp.com",
 
-  projectId: "YOUR_PROJECT",
+  projectId:
+  "YOUR_PROJECT",
 
   storageBucket:
   "YOUR_PROJECT.appspot.com",
@@ -23,43 +26,100 @@ const firebaseConfig = {
   messagingSenderId:
   "YOUR_ID",
 
-  appId: "YOUR_APP_ID"
+  appId:
+  "YOUR_APP_ID"
 };
 
-const app = initializeApp(firebaseConfig);
+const app =
+initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+const auth =
+getAuth(app);
 
 window.recaptchaVerifier =
-new RecaptchaVerifier(auth,
-'recaptcha-container', {});
+new RecaptchaVerifier(
+  auth,
+  "recaptcha-container",
+  {}
+);
 
-window.sendOTP = async function(){
+window.sendOTP =
+async function(){
 
-  const phone =
-  document.getElementById("phone").value;
+  let phone =
+  document.getElementById(
+    "phone"
+  ).value;
+
+  phone =
+  phone.replace(/\D/g,'');
+
+  if(phone.length !== 10){
+
+    alert(
+      "Enter valid 10 digit number"
+    );
+
+    return;
+  }
+
+  const fullPhone =
+  "+91" + phone;
 
   const appVerifier =
   window.recaptchaVerifier;
 
-  confirmationResult =
-  await signInWithPhoneNumber(
-    auth,
-    phone,
-    appVerifier
-  );
+  try{
 
-  login.classList.add("hidden");
-  otp.classList.remove("hidden");
+    confirmationResult =
+    await signInWithPhoneNumber(
+      auth,
+      fullPhone,
+      appVerifier
+    );
+
+    login.classList.add(
+      "hidden"
+    );
+
+    otp.classList.remove(
+      "hidden"
+    );
+
+    alert("OTP Sent");
+
+  }catch(error){
+
+    alert(error.message);
+  }
 }
 
-window.verifyOTP = async function(){
+window.verifyOTP =
+async function(){
 
   const code =
-  document.getElementById("otpInput").value;
+  document.getElementById(
+    "otpInput"
+  ).value;
 
-  await confirmationResult.confirm(code);
+  try{
 
-  otp.classList.add("hidden");
-  home.classList.remove("hidden");
+    await confirmationResult.confirm(
+      code
+    );
+
+    otp.classList.add(
+      "hidden"
+    );
+
+    home.classList.remove(
+      "hidden"
+    );
+
+  }catch(error){
+
+    alert(
+      "Invalid OTP"
+    );
+  }
 }
