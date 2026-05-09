@@ -98,32 +98,44 @@ async function(){
   }
 }
 
-window.verifyOTP =
-async function(){
+window.verifyOTP = async function () {
 
   const code =
-  document.getElementById(
-    "otpInput"
-  ).value;
+  document.getElementById("otpInput").value;
 
-  try{
+  if (!code) {
 
-    await confirmationResult.confirm(
-      code
+    alert("Enter OTP");
+
+    return;
+  }
+
+  try {
+
+    const result =
+    await confirmationResult.confirm(code);
+
+    const user = result.user;
+
+    localStorage.setItem(
+      "homnixUser",
+      JSON.stringify({
+        phone: user.phoneNumber
+      })
     );
 
-    otp.classList.add(
-      "hidden"
-    );
+    document
+    .getElementById("otp")
+    .classList.add("hidden");
 
-    home.classList.remove(
-      "hidden"
-    );
+    document
+    .getElementById("nameScreen")
+    .classList.remove("hidden");
 
-  }catch(error){
+  } catch (error) {
 
-    alert(
-      "Invalid OTP"
-    );
+    alert("Invalid OTP");
+
+    console.log(error);
   }
 }
