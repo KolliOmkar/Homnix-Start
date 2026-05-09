@@ -1,99 +1,187 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
   <title>Homnix</title>
 
   <link rel="stylesheet" href="style.css">
 
-  <script type="module" src="firebase.js"></script>
+  <script type="module"
+    src="firebase.js"></script>
 </head>
 
 <body>
 
 <div id="app">
 
+  <!-- SPLASH -->
+
   <div class="screen" id="splash">
+
     <h1>Homnix</h1>
-    <p>Trusted Home Services</p>
-    <button onclick="showLogin()">Get Started</button>
+
+    <p>
+      Trusted Home Services
+    </p>
+
+    <button onclick="showLogin()">
+      Get Started
+    </button>
+
   </div>
 
-  <div class="screen hidden" id="login">
+  <!-- LOGIN -->
+
+  <div class="screen hidden"
+    id="login">
+
     <h2>Login</h2>
 
-    <input id="phone"
-      placeholder="+91 9876543210">
+    <input
+      id="phone"
+      type="tel"
+      maxlength="10"
+      placeholder="Enter 10 digit mobile number">
 
     <div id="recaptcha-container"></div>
 
     <button onclick="sendOTP()">
       Send OTP
     </button>
+
   </div>
 
-  <div class="screen hidden" id="otp">
+  <!-- OTP -->
+
+  <div class="screen hidden"
+    id="otp">
+
     <h2>Enter OTP</h2>
 
-    <input id="otpInput"
+    <input
+      id="otpInput"
       placeholder="123456">
 
     <button onclick="verifyOTP()">
       Verify OTP
     </button>
+
   </div>
 
-  <div class="screen hidden" id="home">
+  <!-- HOME -->
+
+  <div class="screen hidden"
+    id="home">
 
     <div class="topbar">
+
       <h2>Homnix</h2>
 
-      <button onclick="toggleMenu()">☰</button>
+      <button onclick="toggleMenu()">
+        ☰
+      </button>
+
     </div>
 
-    <div id="menu" class="hidden menu">
-      <p id="profileBtn">Profile</p>
-      <p>Help</p>
+    <!-- MENU -->
+
+    <div id="menu"
+      class="menu hidden">
+
+      <p onclick="showProfile()">
+        Profile
+      </p>
+
+      <p onclick="showHelp()">
+        Help
+      </p>
+
     </div>
+
+    <!-- OFFER -->
 
     <div class="offer">
-      New Customer Offer 30% OFF
+
+      🎉 New Customer Offer
+      30% OFF
+
     </div>
+
+    <!-- SERVICES -->
 
     <h3>Services</h3>
 
     <div class="services">
 
       <div class="card">
+
         <h4>Painter</h4>
+
         <p>₹999</p>
-        <button>Book</button>
+
+        <button onclick="bookService('Painter')">
+          Book
+        </button>
+
       </div>
 
       <div class="card">
+
         <h4>House Cleaning</h4>
+
         <p>₹499</p>
-        <button>Book</button>
+
+        <button onclick="bookService('House Cleaning')">
+          Book
+        </button>
+
       </div>
 
       <div class="card">
+
         <h4>House Help</h4>
+
         <p>₹799</p>
-        <button>Book</button>
+
+        <button onclick="bookService('House Help')">
+          Book
+        </button>
+
       </div>
 
       <div class="card">
+
         <h4>Plumbing</h4>
+
         <p>₹699</p>
-        <button>Book</button>
+
+        <button onclick="bookService('Plumbing')">
+          Book
+        </button>
+
       </div>
 
     </div>
 
+    <!-- FOOTER -->
+
     <div class="footer">
-      help@homnix.com <br>
-      +91 9999999999 <br><br>
+
+      help@homnix.com
+
+      <br><br>
+
+      +91 9999999999
+
+      <br><br>
 
       © 2026 Homnix
+      All Rights Reserved
+
     </div>
 
   </div>
